@@ -1,5 +1,6 @@
 package lab0;
 import java.lang.IllegalArgumentException;
+import javax.swing.JOptionPane;
 /**
  * In this challenge you need to address the probability that at some
  * point the arguments to method parameters may not be valid. 
@@ -36,12 +37,12 @@ public class Employee {
         try{
             setFirstName(firstName);
         }catch(IllegalArgumentException e){
-            
+            JOptionPane.showMessageDialog(null, e);
         }
         try{
             setLastName(lastName);
         }catch(IllegalArgumentException e){
-            
+            JOptionPane.showMessageDialog(null, e);
         }
         setSsn(ssn);
         this.daysVacation = daysVacation;
@@ -53,7 +54,7 @@ public class Employee {
 
     // Days Vacation cannot be less than 0
     public void setDaysVacation(int daysVacation) {
-        if(daysVacation<0){
+        if(daysVacation<0 || daysVacation> MAX_VACATION_DAYS){
             throw new IllegalArgumentException("Please tell me that they didn't"
                     + " make extra days in the year to force you to have "
                     + "negative vacation days");
