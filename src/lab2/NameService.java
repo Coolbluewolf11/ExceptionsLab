@@ -23,19 +23,11 @@ public class NameService {
         
         // write your code here to extract the lastName and store in the
         // above local variable
-        int wordBreak=0;
-        char space = ' ';
-        // Your code goes here. Assign your value to lastName
-        for(int i = 0; i<fullName.length();i++){
-            if(fullName.charAt(i) == space || fullName.charAt(i) == '_'){
-                wordBreak = i;
-            }
+        if(fullName == null || fullName.isEmpty() || fullName.split(" ").length < 2){
+            throw new IllegalArgumentException("Sorry Full name must contain both first name and last name");
         }
-        if(wordBreak==0){
-            throw new IllegalArgumentException("Please use the perscribed format"
-                    + " of first last or use the format: first_last");
-        }
-        lastName = fullName.substring(wordBreak);
+        String[] parts = fullName.split(" ");
+        lastName = parts[parts.length];
         return lastName;
         
     }

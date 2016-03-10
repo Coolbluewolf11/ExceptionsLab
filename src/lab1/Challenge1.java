@@ -26,9 +26,9 @@ public class Challenge1 {
         try{
             lastName = app.extractLastName(fullName);
         }catch(IllegalArgumentException e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        String msg = "Your last name is: " + lastName;
+        String msg = "To the best of our knowledge your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
     }
     
@@ -38,19 +38,13 @@ public class Challenge1 {
     // it there.
     public String extractLastName(String fullName) {
         String lastName = null;
-        int wordBreak=0;
-        char space = ' ';
-        // Your code goes here. Assign your value to lastName
-        for(int i = 0; i<fullName.length();i++){
-            if(fullName.charAt(i) == space){
-                wordBreak = i;
-            }
+        if(fullName == null || fullName.isEmpty() || fullName.split(" ").length < 2){
+            throw new IllegalArgumentException("Sorry Full name must contain both first name and last name");
         }
-        if(wordBreak==0){
-            throw new IllegalArgumentException("Please use the perscribed format of first last");
-        }
-        lastName = fullName.substring(wordBreak);
+        String[] parts = fullName.split(" ");
+        
+        lastName = parts[parts.length];
+        
         return lastName;
     }
-
 }
